@@ -1,10 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useMemo, useState } from 'react'
+import { Link } from '@tanstack/react-router'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Dices, Plus, RotateCcw, Trash2 } from "lucide-react"
+import { ArrowLeft, Dices, Plus, RotateCcw, Trash2 } from "lucide-react"
 
 export const Route = createFileRoute('/dice-roller')({
   component: RouteComponent,
@@ -138,8 +139,24 @@ function RouteComponent() {
 
   return (
     <main className="min-h-svh bg-linear-to-br from-zinc-100 via-stone-50 to-slate-100 p-6 md:p-10">
-      <div className="mx-auto grid w-full max-w-5xl gap-6 lg:grid-cols-[340px_1fr]">
-        <Card className="border-zinc-300/80 bg-white/90 shadow-lg">
+      <div className="mx-auto flex w-full max-w-5xl flex-col gap-6">
+        <header className="relative rounded-3xl border border-zinc-200/80 bg-white/80 px-4 py-4 shadow-sm backdrop-blur md:px-6">
+          <Button asChild variant="ghost" size="icon" className="absolute left-3 top-3 h-10 w-10 rounded-full">
+            <Link to="/" aria-label="Zurück zur Übersicht">
+              <ArrowLeft className="h-4 w-4" />
+            </Link>
+          </Button>
+
+          <div className="pl-12 pr-2 md:pl-14">
+            <h1 className="text-2xl font-black tracking-tight text-zinc-900 md:text-4xl">Dice Roller</h1>
+            <p className="mt-1 max-w-2xl text-sm text-zinc-600 md:text-base">
+              Würfle mehrere Würfelgruppen mit Modifier und behalte den Verlauf im Blick.
+            </p>
+          </div>
+        </header>
+
+        <div className="grid w-full gap-6 lg:grid-cols-[340px_1fr]">
+          <Card className="border-zinc-300/80 bg-white/90 shadow-lg">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-xl">
               <Dices className="h-5 w-5" /> Dice Roller
@@ -293,6 +310,7 @@ function RouteComponent() {
             </CardContent>
           </Card>
         </div>
+      </div>
       </div>
     </main>
   )

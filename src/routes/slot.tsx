@@ -1,10 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState, useCallback } from 'react'
+import { Link } from '@tanstack/react-router'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Slider } from "@/components/ui/slider"
 import { Label } from "@/components/ui/label"
-import { Coins, Play, RotateCcw } from "lucide-react"
+import { ArrowLeft, Coins, Play, RotateCcw } from "lucide-react"
 
 export const Route = createFileRoute('/slot')({
   component: RouteComponent,
@@ -134,7 +135,22 @@ function RouteComponent() {
   }
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-slate-100 p-4 font-sans">
+    <main className="min-h-svh bg-linear-to-br from-zinc-100 via-stone-50 to-slate-100 p-4 font-sans md:p-10">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
+        <header className="relative rounded-3xl border border-zinc-200/80 bg-white/80 px-4 py-4 shadow-sm backdrop-blur md:px-6">
+          <Button asChild variant="ghost" size="icon" className="absolute left-3 top-3 h-10 w-10 rounded-full">
+            <Link to="/" aria-label="Zurück zur Übersicht">
+              <ArrowLeft className="h-4 w-4" />
+            </Link>
+          </Button>
+
+          <div className="pl-12 pr-2 md:pl-14">
+            <h1 className="text-2xl font-black tracking-tight text-zinc-900 md:text-4xl">Slot Machine</h1>
+            <p className="mt-1 max-w-2xl text-sm text-zinc-600 md:text-base">
+              Drehe die Walzen und versuche, den Jackpot zu treffen.
+            </p>
+          </div>
+        </header>
 
       <div className="absolute left-4 top-4 z-20 w-full max-w-70 hidden md:block">
         <Card className="shadow-2xl border-none bg-white/90 backdrop-blur-md">
@@ -192,6 +208,7 @@ function RouteComponent() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </main>
   )
 }

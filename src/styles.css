@@ -225,6 +225,8 @@
       inset 0 1px 0 oklch(1 0 0 / 0.9),
       inset 0 -5px 12px oklch(0.52 0.09 78 / 0.35);
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(1px);
     overflow: hidden;
   }
 
@@ -284,6 +286,6 @@
   }
 
   .coin-back {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) translateZ(1px);
   }
 }
