@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WofRouteImport } from './routes/wof'
-import { Route as SlotRouteImport } from './routes/slot'
 import { Route as DiceRollerRouteImport } from './routes/dice-roller'
 import { Route as CoinFlipRouteImport } from './routes/coin-flip'
 import { Route as IndexRouteImport } from './routes/index'
@@ -18,11 +17,6 @@ import { Route as IndexRouteImport } from './routes/index'
 const WofRoute = WofRouteImport.update({
   id: '/wof',
   path: '/wof',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SlotRoute = SlotRouteImport.update({
-  id: '/slot',
-  path: '/slot',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiceRollerRoute = DiceRollerRouteImport.update({
@@ -45,14 +39,12 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/coin-flip': typeof CoinFlipRoute
   '/dice-roller': typeof DiceRollerRoute
-  '/slot': typeof SlotRoute
   '/wof': typeof WofRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/coin-flip': typeof CoinFlipRoute
   '/dice-roller': typeof DiceRollerRoute
-  '/slot': typeof SlotRoute
   '/wof': typeof WofRoute
 }
 export interface FileRoutesById {
@@ -60,22 +52,20 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/coin-flip': typeof CoinFlipRoute
   '/dice-roller': typeof DiceRollerRoute
-  '/slot': typeof SlotRoute
   '/wof': typeof WofRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/coin-flip' | '/dice-roller' | '/slot' | '/wof'
+  fullPaths: '/' | '/coin-flip' | '/dice-roller' | '/wof'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/coin-flip' | '/dice-roller' | '/slot' | '/wof'
-  id: '__root__' | '/' | '/coin-flip' | '/dice-roller' | '/slot' | '/wof'
+  to: '/' | '/coin-flip' | '/dice-roller' | '/wof'
+  id: '__root__' | '/' | '/coin-flip' | '/dice-roller' | '/wof'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CoinFlipRoute: typeof CoinFlipRoute
   DiceRollerRoute: typeof DiceRollerRoute
-  SlotRoute: typeof SlotRoute
   WofRoute: typeof WofRoute
 }
 
@@ -86,13 +76,6 @@ declare module '@tanstack/react-router' {
       path: '/wof'
       fullPath: '/wof'
       preLoaderRoute: typeof WofRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/slot': {
-      id: '/slot'
-      path: '/slot'
-      fullPath: '/slot'
-      preLoaderRoute: typeof SlotRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dice-roller': {
@@ -123,7 +106,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CoinFlipRoute: CoinFlipRoute,
   DiceRollerRoute: DiceRollerRoute,
-  SlotRoute: SlotRoute,
   WofRoute: WofRoute,
 }
 export const routeTree = rootRouteImport

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router"
 import { Link } from "@tanstack/react-router"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowRight, CircleDot, Coins, Dices, FerrisWheel } from "lucide-react"
+import { ArrowRight, CircleDot, Dices, FerrisWheel } from "lucide-react"
 
 export const Route = createFileRoute("/")({ component: App })
 
@@ -18,12 +18,6 @@ const apps = [
     description: "Wirf eine realistische Münze und erhalte zufällig Kopf oder Zahl.",
     to: "/coin-flip",
     icon: CircleDot,
-  },
-  {
-    title: "Slot Machine",
-    description: "Drehe die Walzen und versuche den Jackpot zu treffen.",
-    to: "/slot",
-    icon: Coins,
   },
   {
     title: "Wheel of Fortune",

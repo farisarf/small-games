@@ -171,52 +171,34 @@ function RouteComponent() {
         <div className="relative flex flex-col items-center justify-start gap-6 overflow-x-hidden overflow-y-auto md:justify-center md:overflow-hidden">
           <div className="relative flex w-full flex-col items-center justify-center">
             <div className="relative aspect-square w-[clamp(280px,90vw,600px)] rounded-full bg-white p-3 shadow-[0_20px_50px_rgba(0,0,0,0.2)] md:p-4">
-          <canvas
-            ref={canvasRef}
-            width={dia}
-            height={dia}
-            className="block h-auto w-full will-change-transform rounded-full"
-            style={{ transform: `rotate(${-PI / 2}rad)` }}
-          />
-          <button
-            onClick={handleSpin}
-            disabled={participants.length < 2}
-            style={{ 
-              backgroundColor: spinBg,
-              boxShadow: `0 0 0 4px white, 0 0 0 10px ${spinBg}, 0 15px 30px rgba(0,0,0,0.5)`
-            }}
-            className="absolute top-1/2 left-1/2 w-[24%] h-[24%] -mt-[12%] -ml-[12%] 
-                       rounded-full flex justify-center items-center text-center 
-                       font-black text-white uppercase cursor-pointer select-none 
-                       transition-all duration-300 z-10 border-none outline-none
-                       hover:scale-105 active:scale-95
-                       after:content-[''] after:absolute after:-top-5.5 after:left-1/2 after:-ml-3
-                       after:border-l-12 after:border-l-transparent 
-                       after:border-r-12 after:border-r-transparent 
-                       after:border-b-20 after:border-b-current"
-          >
-            <span className="text-[10px] md:text-sm px-2 leading-none drop-shadow-md overflow-hidden">
-              {participants.length < 2 ? 'Bereit?' : spinText}
-            </span>
-          </button>
-        </div>
-
-        <div className="mt-6 flex flex-col items-center gap-4 md:mt-8">
-          <p className="text-center text-[11px] font-medium uppercase tracking-widest text-slate-400 animate-pulse">
-            {engine.current.isSpinning ? "Viel Glück!" : "Klicke auf den Button zum Drehen"}
-          </p>
-
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline" size="icon" className="h-11 w-11 rounded-full border-slate-300 bg-white shadow-sm hover:bg-slate-50">
-                <Settings2 className="h-4 w-4" />
-                <span className="sr-only">Konfiguration öffnen</span>
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-[calc(100%-2rem)] rounded-2xl border-none bg-transparent p-0 shadow-none sm:max-w-105">
-              {configPanel}
-            </DialogContent>
-          </Dialog>
+              <canvas
+                ref={canvasRef}
+                width={dia}
+                height={dia}
+                className="block h-auto w-full will-change-transform rounded-full"
+                style={{ transform: `rotate(${-PI / 2}rad)` }}
+              />
+              <button
+                onClick={handleSpin}
+                disabled={participants.length < 2}
+                style={{ 
+                  backgroundColor: spinBg,
+                  boxShadow: `0 0 0 4px white, 0 0 0 10px ${spinBg}, 0 15px 30px rgba(0,0,0,0.5)`
+                }}
+                className="absolute top-1/2 left-1/2 w-[24%] h-[24%] -mt-[12%] -ml-[12%] 
+                           rounded-full flex justify-center items-center text-center 
+                           font-black text-white uppercase cursor-pointer select-none 
+                           transition-all duration-300 z-10 border-none outline-none
+                           hover:scale-105 active:scale-95
+                           after:content-[''] after:absolute after:-top-5.5 after:left-1/2 after:-ml-3
+                           after:border-l-12 after:border-l-transparent 
+                           after:border-r-12 after:border-r-transparent 
+                           after:border-b-20 after:border-b-current"
+              >
+                <span className="text-[10px] md:text-sm px-2 leading-none drop-shadow-md overflow-hidden">
+                  {participants.length < 2 ? 'Bereit?' : spinText}
+                </span>
+              </button>
             </div>
 
             <div className="mt-6 flex flex-col items-center gap-4 md:mt-8">
