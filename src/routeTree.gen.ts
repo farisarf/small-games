@@ -8,43 +8,111 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from "./routes/__root"
-import { Route as IndexRouteImport } from "./routes/index"
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as WofRouteImport } from './routes/wof'
+import { Route as SlotRouteImport } from './routes/slot'
+import { Route as DiceRollerRouteImport } from './routes/dice-roller'
+import { Route as CoinFlipRouteImport } from './routes/coin-flip'
+import { Route as IndexRouteImport } from './routes/index'
 
+const WofRoute = WofRouteImport.update({
+  id: '/wof',
+  path: '/wof',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SlotRoute = SlotRouteImport.update({
+  id: '/slot',
+  path: '/slot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiceRollerRoute = DiceRollerRouteImport.update({
+  id: '/dice-roller',
+  path: '/dice-roller',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoinFlipRoute = CoinFlipRouteImport.update({
+  id: '/coin-flip',
+  path: '/coin-flip',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute
+  '/': typeof IndexRoute
+  '/coin-flip': typeof CoinFlipRoute
+  '/dice-roller': typeof DiceRollerRoute
+  '/slot': typeof SlotRoute
+  '/wof': typeof WofRoute
 }
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute
+  '/': typeof IndexRoute
+  '/coin-flip': typeof CoinFlipRoute
+  '/dice-roller': typeof DiceRollerRoute
+  '/slot': typeof SlotRoute
+  '/wof': typeof WofRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  "/": typeof IndexRoute
+  '/': typeof IndexRoute
+  '/coin-flip': typeof CoinFlipRoute
+  '/dice-roller': typeof DiceRollerRoute
+  '/slot': typeof SlotRoute
+  '/wof': typeof WofRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: "/"
+  fullPaths: '/' | '/coin-flip' | '/dice-roller' | '/slot' | '/wof'
   fileRoutesByTo: FileRoutesByTo
-  to: "/"
-  id: "__root__" | "/"
+  to: '/' | '/coin-flip' | '/dice-roller' | '/slot' | '/wof'
+  id: '__root__' | '/' | '/coin-flip' | '/dice-roller' | '/slot' | '/wof'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CoinFlipRoute: typeof CoinFlipRoute
+  DiceRollerRoute: typeof DiceRollerRoute
+  SlotRoute: typeof SlotRoute
+  WofRoute: typeof WofRoute
 }
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/": {
-      id: "/"
-      path: "/"
-      fullPath: "/"
+    '/wof': {
+      id: '/wof'
+      path: '/wof'
+      fullPath: '/wof'
+      preLoaderRoute: typeof WofRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/slot': {
+      id: '/slot'
+      path: '/slot'
+      fullPath: '/slot'
+      preLoaderRoute: typeof SlotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dice-roller': {
+      id: '/dice-roller'
+      path: '/dice-roller'
+      fullPath: '/dice-roller'
+      preLoaderRoute: typeof DiceRollerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coin-flip': {
+      id: '/coin-flip'
+      path: '/coin-flip'
+      fullPath: '/coin-flip'
+      preLoaderRoute: typeof CoinFlipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -53,14 +121,18 @@ declare module "@tanstack/react-router" {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CoinFlipRoute: CoinFlipRoute,
+  DiceRollerRoute: DiceRollerRoute,
+  SlotRoute: SlotRoute,
+  WofRoute: WofRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
 
-import type { getRouter } from "./router.tsx"
-import type { createStart } from "@tanstack/react-start"
-declare module "@tanstack/react-start" {
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
   interface Register {
     ssr: true
     router: Awaited<ReturnType<typeof getRouter>>
