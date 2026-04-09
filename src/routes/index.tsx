@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router"
 import { Link } from "@tanstack/react-router"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowRight, CircleDot, Dices, FerrisWheel } from "lucide-react"
+import { ArrowRight, CircleDot, Dices, FerrisWheel, Hash, Swords, Palette } from "lucide-react"
 
 export const Route = createFileRoute("/")({ component: App })
 
@@ -24,6 +24,24 @@ const apps = [
     description: "Drehe das Glücksrad und lass einen Gewinner auswählen.",
     to: "/wof",
     icon: FerrisWheel,
+  },
+  {
+    title: "RPS",
+    description: "Spiele Stein, Papier, Schere gegen einen zufälligen Bot.",
+    to: "/rps",
+    icon: Swords,
+  },
+  {
+    title: "Number Guessing",
+    description: "Rate die geheime Zahl des Bots mit höher- oder niedriger-Hinweisen.",
+    to: "/number-guessing",
+    icon: Hash,
+  },
+  {
+    title: "Pixel Art",
+    description: "Male einzelne Pixel auf einer frei einstellbaren Leinwand.",
+    to: "/pixel-art",
+    icon: Palette,
   },
 ] as const
 
@@ -66,9 +84,9 @@ function App() {
                 </CardFooter>
               </Card>
             )
-          })}
-        </section>
-      </div>
-    </main>
-  )
-}
+            })}
+          </section>
+        </div>
+      </main>
+    )
+  }

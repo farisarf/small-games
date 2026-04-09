@@ -10,6 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WofRouteImport } from './routes/wof'
+import { Route as RpsRouteImport } from './routes/rps'
+import { Route as PixelArtRouteImport } from './routes/pixel-art'
+import { Route as NumberGuessingRouteImport } from './routes/number-guessing'
 import { Route as DiceRollerRouteImport } from './routes/dice-roller'
 import { Route as CoinFlipRouteImport } from './routes/coin-flip'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,6 +20,21 @@ import { Route as IndexRouteImport } from './routes/index'
 const WofRoute = WofRouteImport.update({
   id: '/wof',
   path: '/wof',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RpsRoute = RpsRouteImport.update({
+  id: '/rps',
+  path: '/rps',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PixelArtRoute = PixelArtRouteImport.update({
+  id: '/pixel-art',
+  path: '/pixel-art',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NumberGuessingRoute = NumberGuessingRouteImport.update({
+  id: '/number-guessing',
+  path: '/number-guessing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiceRollerRoute = DiceRollerRouteImport.update({
@@ -39,12 +57,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/coin-flip': typeof CoinFlipRoute
   '/dice-roller': typeof DiceRollerRoute
+  '/number-guessing': typeof NumberGuessingRoute
+  '/pixel-art': typeof PixelArtRoute
+  '/rps': typeof RpsRoute
   '/wof': typeof WofRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/coin-flip': typeof CoinFlipRoute
   '/dice-roller': typeof DiceRollerRoute
+  '/number-guessing': typeof NumberGuessingRoute
+  '/pixel-art': typeof PixelArtRoute
+  '/rps': typeof RpsRoute
   '/wof': typeof WofRoute
 }
 export interface FileRoutesById {
@@ -52,20 +76,48 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/coin-flip': typeof CoinFlipRoute
   '/dice-roller': typeof DiceRollerRoute
+  '/number-guessing': typeof NumberGuessingRoute
+  '/pixel-art': typeof PixelArtRoute
+  '/rps': typeof RpsRoute
   '/wof': typeof WofRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/coin-flip' | '/dice-roller' | '/wof'
+  fullPaths:
+    | '/'
+    | '/coin-flip'
+    | '/dice-roller'
+    | '/number-guessing'
+    | '/pixel-art'
+    | '/rps'
+    | '/wof'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/coin-flip' | '/dice-roller' | '/wof'
-  id: '__root__' | '/' | '/coin-flip' | '/dice-roller' | '/wof'
+  to:
+    | '/'
+    | '/coin-flip'
+    | '/dice-roller'
+    | '/number-guessing'
+    | '/pixel-art'
+    | '/rps'
+    | '/wof'
+  id:
+    | '__root__'
+    | '/'
+    | '/coin-flip'
+    | '/dice-roller'
+    | '/number-guessing'
+    | '/pixel-art'
+    | '/rps'
+    | '/wof'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CoinFlipRoute: typeof CoinFlipRoute
   DiceRollerRoute: typeof DiceRollerRoute
+  NumberGuessingRoute: typeof NumberGuessingRoute
+  PixelArtRoute: typeof PixelArtRoute
+  RpsRoute: typeof RpsRoute
   WofRoute: typeof WofRoute
 }
 
@@ -76,6 +128,27 @@ declare module '@tanstack/react-router' {
       path: '/wof'
       fullPath: '/wof'
       preLoaderRoute: typeof WofRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rps': {
+      id: '/rps'
+      path: '/rps'
+      fullPath: '/rps'
+      preLoaderRoute: typeof RpsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pixel-art': {
+      id: '/pixel-art'
+      path: '/pixel-art'
+      fullPath: '/pixel-art'
+      preLoaderRoute: typeof PixelArtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/number-guessing': {
+      id: '/number-guessing'
+      path: '/number-guessing'
+      fullPath: '/number-guessing'
+      preLoaderRoute: typeof NumberGuessingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dice-roller': {
@@ -106,6 +179,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CoinFlipRoute: CoinFlipRoute,
   DiceRollerRoute: DiceRollerRoute,
+  NumberGuessingRoute: NumberGuessingRoute,
+  PixelArtRoute: PixelArtRoute,
+  RpsRoute: RpsRoute,
   WofRoute: WofRoute,
 }
 export const routeTree = rootRouteImport
